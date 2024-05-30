@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git 'https://github.com/seeewhy/realcloud_java-new_project.git'
+                git 'https://github.com/dadeteye1/realcloud_java-new_project.git'
             }
         }
         stage('Build') {
