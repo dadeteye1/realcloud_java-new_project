@@ -4,22 +4,22 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git 'https://github.com/dadeteye1/realcloud_java-new_project.git'
+                git branch: 'main', url: 'https://github.com/dadeteye1/realcloud_java-new_project.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'SampleWebApp && mvn clean package'
+                sh 'cd SampleWebApp && mvn clean package'
             }
         }
         stage('Test') {
             steps {
-                sh 'cd SampleWebApp mvn test'
+                sh 'cd SampleWebApp && mvn test'
             }
         }
         stage('Deploy to Tomcat') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://18.227.10.109:8080//')], contextPath: 'path', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://3.139.81.247:8080//')], contextPath: '/app', war: '**/*.war'
             }
         }
     }
